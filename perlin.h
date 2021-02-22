@@ -24,7 +24,7 @@ extern int seed;
 #define ANSI_BLUE   "\x1b[34m"
 #define ANSI_GREEN  "\x1b[32m"
 #define ANSI_RESET  "\x1b[0m"
-
+#define ANSI_BRIGHT_GREEN "\x1b[32;1m"
 // Function prototypes, perlin.c
 int noise(int x, int y);
 double interpolate(double a, double b, double weight);

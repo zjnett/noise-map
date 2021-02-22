@@ -4,7 +4,10 @@
 char ascii_filter(double value) {
     if (value > 0.5) {
         if (value > 0.58) {
-            return '@';
+            if (value > 0.65) {
+                return '@';
+            }
+            return '?';
         }
         return '#';
     }
@@ -17,8 +20,10 @@ char *color_filter(char value) {
             return ANSI_BLUE;
         case '#':
             return ANSI_YELLOW;
-        case '@':
+        case '?':
             return ANSI_GREEN;
+        case '@':
+            return ANSI_BRIGHT_GREEN;
     }
     return NULL;
 }
