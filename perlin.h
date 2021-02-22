@@ -15,16 +15,22 @@ typedef struct {
 extern int seed;
 
 // Map
-#define HORIZONTAL_SIZE 50
-#define VERTICAL_SIZE 50
+#define HORIZONTAL_SIZE 1000
+#define VERTICAL_SIZE 1000
 
 // Colors
 #define ANSI_RED    "\x1b[31m"
 #define ANSI_YELLOW "\x1b[33m"
 #define ANSI_BLUE   "\x1b[34m"
 #define ANSI_GREEN  "\x1b[32m"
+#define ANSI_CYAN   "\x1b[36m"
+#define ANSI_GRAY   "\x1b[0m"
+#define ANSI_WHITE  "\x1b[37m"
 #define ANSI_RESET  "\x1b[0m"
 #define ANSI_BRIGHT_GREEN "\x1b[32;1m"
+#define ANSI_BRIGHT_BLUE "\x1b[34;1m"
+#define ANSI_BRIGHT_CYAN "\x1b[36;1m"
+
 // Function prototypes, perlin.c
 int noise(int x, int y);
 double interpolate(double a, double b, double weight);

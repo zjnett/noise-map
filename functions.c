@@ -4,10 +4,13 @@
 char ascii_filter(double value) {
     if (value > 0.5) {
         if (value > 0.58) {
-            if (value > 0.65) {
+            if (value > 0.68) {
                 return '@';
+                if (value > 0.8) {
+                    return '?';
+                }
             }
-            return '?';
+            return '"';
         }
         return '#';
     }
@@ -15,15 +18,19 @@ char ascii_filter(double value) {
 }
 
 char *color_filter(char value) {
+    int random_var = 0;
     switch(value) {
         case '~':
-            return ANSI_BLUE;
+            random_var = rand() % 2;
+            return random_var ? ANSI_BLUE : ANSI_BRIGHT_BLUE;
         case '#':
             return ANSI_YELLOW;
-        case '?':
+        case '"':
             return ANSI_GREEN;
         case '@':
-            return ANSI_BRIGHT_GREEN;
+            return ANSI_GRAY;
+        case '?':
+            return ANSI_WHITE;
     }
     return NULL;
 }
