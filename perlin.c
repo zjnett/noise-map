@@ -25,6 +25,11 @@ int noise(int x, int y) {
     return permutation[(permutation[(y + seed) % 256] + x) % 256];
 }
 
+// Wrapper interpolation function (for easy switching)
+double interpolate(double a, double b, double weight) {
+    return linear_interpolation(a, b, weight);
+}
+
 // Linear interpolation function. Interpolate between values a and b, provided weight is 0.0-1.0.
 double linear_interpolation(double a, double b, double weight) {
     return (b - a) * weight + a;
@@ -55,6 +60,7 @@ double dot_grid_gradient(int input_x, int input_y, double x, double y) {
 }
 
 // Perlin noise generation function for coordinates x and y
+// Adapted from https://gist.github.com/nowl/828013
 double perlin_noise(double x, double y) {
     int x_int = (int) x;
     int y_int = (int) y;
@@ -64,9 +70,9 @@ double perlin_noise(double x, double y) {
     int t = noise(x_int+1, y_int);
     int u = noise(x_int, y_int+1);
     int v = noise(x_int+1, y_int+1);
-    double low = linear_interpolation(s, t, x_frac);
-    double high = linear_interpolation(u, v, x_frac);
-    return linear_interpolation(low, high, y_frac);
+    double low = interpolate(s, t, x_frac);
+    double high = interpolate(u, v, x_frac);
+    return interpolate(low, high, y_frac);
 }
 
 // Perlin wrapper function

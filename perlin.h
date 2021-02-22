@@ -27,6 +27,7 @@ extern int seed;
 
 // Function prototypes, perlin.c
 int noise(int x, int y);
+double interpolate(double a, double b, double weight);
 double linear_interpolation(double a, double b, double weight);
 double cubic_interpolation(double a, double b, double weight);
 vector2 random_gradient(int input_x, int input_y);
