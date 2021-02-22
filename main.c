@@ -1,10 +1,15 @@
 #include "perlin.h"
 
-extern int permutation[];
+extern int seed;
 
 int main(int argc, char *argv[]) {
     
+    srand(time(NULL));
+
     double map[10][10] = { { 0 } };
+
+    // Generate random seed
+    seed = rand() % 256;
 
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {

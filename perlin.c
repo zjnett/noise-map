@@ -3,7 +3,7 @@
 // Perlin noise-specific code largely adapted from https://en.wikipedia.org/wiki/Perlin_noise
 
 // Original permutation array used by Ken Perlin. 256 integers with even distribution with values 0-255.
-int permutation[] = { 151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 
+static int permutation[] = { 151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 
                       103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 
                       26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 237, 149, 56, 
                       87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166, 
@@ -18,6 +18,12 @@ int permutation[] = { 151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 
                       241, 81, 51, 145, 235, 249, 14, 239, 107, 49, 192, 214, 31, 181, 199, 106, 
                       157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254, 138, 236, 205, 
                       93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180 };
+
+int seed = 0;
+
+int noise(int x, int y) {
+    return permutation[(permutation[(y + seed) % 256] + x) % 256];
+}
 
 // Linear interpolation function. Interpolate between values a and b, provided weight is 0.0-1.0.
 double linear_interpolation(double a, double b, double weight) {
@@ -50,29 +56,17 @@ double dot_grid_gradient(int input_x, int input_y, double x, double y) {
 
 // Perlin noise generation function for coordinates x and y
 double perlin_noise(double x, double y) {
-    // Determine grid cell coordinates
-    int x0 = (int) x;
-    int x1 = x0 + 1;
-    int y0 = (int) y;
-    int y1 = y0 + 1;
-
-    // Determine interpolation weights
-    double sx = x - (double) x0;
-    double sy = y - (double) y0;
-
-    // Interpolate between grid point gradients
-    double n0, n1, ix0, ix1, value;
-
-    n0 = dot_grid_gradient(x0, y0, x, y);
-    n1 = dot_grid_gradient(x1, y0, x, y);
-    ix0 = linear_interpolation(n0, n1, sx);
-
-    n0 = dot_grid_gradient(x0, y1, x, y);
-    n1 = dot_grid_gradient(x1, y1, x, y);
-    ix1 = linear_interpolation(n0, n1, sx);
-
-    value = linear_interpolation(ix0, ix1, sy);
-    return value;
+    int x_int = (int) x;
+    int y_int = (int) y;
+    double x_frac = x - x_int;
+    double y_frac = y - y_int;
+    int s = noise(x_int, y_int);
+    int t = noise(x_int+1, y_int);
+    int u = noise(x_int, y_int+1);
+    int v = noise(x_int+1, y_int+1);
+    double low = linear_interpolation(s, t, x_frac);
+    double high = linear_interpolation(u, v, x_frac);
+    return linear_interpolation(low, high, y_frac);
 }
 
 // Perlin wrapper function
