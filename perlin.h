@@ -32,6 +32,8 @@ double perlin(double x, double y, double frequency, int depth);
 
 // Function prototypes, functions.c
 char ascii_filter(double value);
+void generate_perlin_noise_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE], int vertical_size, int horizontal_size);
+void print_map_raw(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]);
 void print_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]);
 
 #endif

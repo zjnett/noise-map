@@ -12,19 +12,10 @@ int main(int argc, char *argv[]) {
     seed = rand() % 256;
 
     // Generate perlin noise for map
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
-            map[i][j] = perlin(i, j, 0.1, 4);
-        }
-    }
+    generate_perlin_noise_map(map, VERTICAL_SIZE, HORIZONTAL_SIZE);
 
     // Print out raw numbers
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
-            printf(" %lf ", map[i][j]);
-        }
-        printf("\n");
-    }
+    print_map_raw(map);
 
     // Print out ASCII-filtered map
     print_map(map);
