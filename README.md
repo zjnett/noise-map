@@ -20,3 +20,5 @@ The command above will produce a variable-sized map up to 1000 x 1000.
 [Wikipedia, Perlin Noise](https://en.wikipedia.org/wiki/Perlin_noise) - Algorithm reference
 
 [nowl (John)](https://github.com/nowl) - Perlin noise code reference
+
+[Ken Perlin](https://cs.nyu.edu/~perlin/) - Creation of the Perlin noise algorithm
