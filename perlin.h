@@ -32,5 +32,6 @@ double perlin(double x, double y, double frequency, int depth);
 
 // Function prototypes, functions.c
 char ascii_filter(double value);
+void print_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]);
 
 #endif

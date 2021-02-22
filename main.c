@@ -27,12 +27,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Print out ASCII-filtered map
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
-            printf(" %c ", ascii_filter(map[i][j]));
-        }
-        printf("\n");
-    }
+    print_map(map);
 
     return 0;
 }

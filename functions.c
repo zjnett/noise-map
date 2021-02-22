@@ -10,3 +10,12 @@ char ascii_filter(double value) {
     }
     return '~'; // water
 }
+
+void print_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]) {
+    for (int i = 0; i < VERTICAL_SIZE; i++) {
+        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
+            printf(" %c ", ascii_filter(map[i][j]));
+        }
+        printf("\n");
+    }
+}
