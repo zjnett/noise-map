@@ -25,25 +25,25 @@ char *color_filter(char value) {
 
 // Expected vertical_size <= VERTICAL_SIZE, horizontal_size <= HORIZONTAL_SIZE
 void generate_perlin_noise_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE], int vertical_size, int horizontal_size) {
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
+    for (int i = 0; i < vertical_size; i++) {
+        for (int j = 0; j < horizontal_size; j++) {
             map[i][j] = perlin(i, j, 0.1, 4);
         }
     }
 }
 
-void print_map_raw(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]) { 
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
+void print_map_raw(double map[VERTICAL_SIZE][HORIZONTAL_SIZE], int vertical_size, int horizontal_size) { 
+    for (int i = 0; i < vertical_size; i++) {
+        for (int j = 0; j < horizontal_size; j++) {
             printf(" %lf ", map[i][j]);
         }
         printf("\n");
     }
 }
 
-void print_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE]) {
-    for (int i = 0; i < VERTICAL_SIZE; i++) {
-        for (int j = 0; j < HORIZONTAL_SIZE; j++) {
+void print_map(double map[VERTICAL_SIZE][HORIZONTAL_SIZE], int vertical_size, int horizontal_size) {
+    for (int i = 0; i < vertical_size; i++) {
+        for (int j = 0; j < horizontal_size; j++) {
             char token = ascii_filter(map[i][j]);
             char *color = color_filter(token);
             printf("%s %c ", color, token);
