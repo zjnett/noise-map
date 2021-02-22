@@ -4,11 +4,11 @@
 char ascii_filter(double value) {
     if (value > 0.5) {
         if (value > 0.58) {
-            if (value > 0.68) {
-                return '@';
+            if (value > 0.65) {
                 if (value > 0.8) {
                     return '?';
                 }
+                return '@';
             }
             return '"';
         }

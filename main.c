@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     generate_perlin_noise_map(map, vertical, horizontal);
 
     // Print out raw numbers
-    print_map_raw(map, vertical, horizontal);
+    // print_map_raw(map, vertical, horizontal);
 
     // Print out ASCII-filtered map
     print_map(map, vertical, horizontal);
